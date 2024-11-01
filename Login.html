@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #2C3E50, #000000); 
+            color: #FFFFFF; 
+        }
+        .card {
+            background-color: #34495E; 
+            border: none; 
+        }
+        .card h3 {
+            color: #FFD700; 
+        }
+        .form-control {
+            background-color: #2C3E50; 
+            color: #FFFFFF; 
+        }
+        .form-control::placeholder {
+            color: #BDC3C7; 
+        }
+        .btn-primary {
+            background-color: #FF5733; 
+            border-color: #FF5733; 
+        }
+        .btn-primary:hover {
+            background-color: #3498DB; 
+            border-color: #3498DB; 
+        }
+        .text-secondary {
+            color: #BDC3C7; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-5 shadow-lg" style="width: 25rem;">
+            <h3 class="text-center mb-4">Login</h3>
+            <form id="loginForm" action="Dashboard.html" method="post">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Masukkan email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Masukkan password" required>
+                    <button type="button" onclick="togglePassword('password')" class="btn btn-link text-secondary">Show/Hide Password</button>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-4">Login</button>
+                <div class="text-center mt-3">
+                    <a href="Register.html" class="text-secondary">Belum punya akun? Register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function togglePassword(inputId) {
+            const passwordField = document.getElementById(inputId);
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const userData = JSON.parse(localStorage.getItem("userData"));
+            console.log("Data dari localStorage:", userData);
+            if (userData && userData.email === email && userData.password === password) {
+                localStorage.setItem("isLoggedIn", "true");
+                alert("Login berhasil");
+                window.location.href = "Dashboard.html";
+            } else {
+                alert("Password atau Email salah!");
+            }
+        });
+    </script>
+</body>
+</html>

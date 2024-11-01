@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pengguna</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #2C3E50, #000000);
+            color: #FFFFFF;
+        }
+        .card {
+            background-color: #34495E;
+            border: none;
+        }
+        .card h3 {
+            color: #FFD700;
+        }
+        .form-control {
+            background-color: #2C3E50;
+            color: #FFFFFF;
+        }
+        .btn-primary {
+            background-color: #FF5733;
+            border-color: #FF5733;
+        }
+        .btn-primary:hover {
+            background-color: #3498DB;
+            border-color: #3498DB;
+        }
+        footer {
+            background-color: #2C3E50;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Responsif -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="index.html">Website</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="settings.html">Pengaturan</a></li>
+                <li class="nav-item"><a class="nav-link" href="help.html">Bantuan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2 class="text-center">Profil Pengguna</h2>
+        <div class="card mx-auto mt-4" style="max-width: 500px;">
+            <div class="card-body">
+                <h5 class="card-title">Nama: <span id="userName">John Doe</span></h5>
+                <p class="card-text">Email: <span id="userEmail">johndoe@example.com</span></p>
+                <p class="card-text">Tanggal Lahir: <span id="userBirthdate">1 Januari 1990</span></p>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit Profil</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Profil -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProfileForm">
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthdate">Tanggal Lahir</label>
+                            <input type="date" class="form-control" id="birthdate" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="saveChanges()">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-3">
+        <p>&copy; 2024 Website Kami. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            loadUserData();
+        });
+
+        function loadUserData() {
+            const userData = JSON.parse(localStorage.getItem('userData')) || {
+                name: 'John Doe',
+                email: 'johndoe@example.com',
+                birthdate: '1990-01-01'
+            };
+            document.getElementById('userName').textContent = userData.name;
+            document.getElementById('userEmail').textContent = userData.email;
+            document.getElementById('userBirthdate').textContent = userData.birthdate;
+            document.getElementById('name').value = userData.name;
+            document.getElementById('email').value = userData.email;
+            document.getElementById('birthdate').value = userData.birthdate;
+        }
+
+        function saveChanges() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const birthdate = document.getElementById('birthdate').value;
+
+            if (!validateEmail(email)) {
+                alert('Masukkan alamat email yang valid!');
+                return;
+            }
+
+            document.getElementById('userName').textContent = name;
+            document.getElementById('userEmail').textContent = email;
+            document.getElementById('userBirthdate').textContent = birthdate;
+
+            const userData = { name, email, birthdate };
+            localStorage.setItem('userData', JSON.stringify(userData));
+            $('#editProfileModal').modal('hide');
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #2C3E50, #000000); 
+            color: #FFFFFF;
+        }
+        .card {
+            background-color: #34495E;
+            border: none; 
+        }
+        .card h3 {
+            color: #FFD700;
+        }
+        .form-control {
+            background-color: #2C3E50;
+            color: #FFFFFF; 
+        }
+        .form-control::placeholder {
+            color: #BDC3C7; 
+        }
+        .btn-primary {
+            background-color: #FF5733; 
+            border-color: #FF5733; 
+        }
+        .btn-primary:hover {
+            background-color: #3498DB; 
+            border-color: #3498DB; 
+        }
+        .text-secondary {
+            color: #BDC3C7; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-5 shadow-lg" style="width: 25rem;">
+            <h3 class="text-center mb-4">Register</h3>
+            <form id="signupForm" action="Login.html" method="post">
+                <div class="form-group">
+                    <label for="name">Nama:</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    function togglePassword(inputId) {
+      const passwordField = document.getElementById(inputId);
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+      } else {
+        passwordField.type = "password";
+      }
+    }
+
+    document.getElementById("signupForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        localStorage.setItem("userData", JSON.stringify({ name, email, password }));
+        alert("Akunmu berhasil di daftarkan! Silahkan login");
+        window.location.href = "Login.html";
+    });
+</script>
+</html>

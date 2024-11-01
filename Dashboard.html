@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Pengguna</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #2C3E50, #000000); 
+            color: #FFFFFF; 
+        }
+        .container {
+            background-color: #34495E; 
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px; 
+        }
+        .card {
+            background-color: #2C3E50; 
+            border: none; 
+        }
+        .card-title {
+            color: #FFD700; 
+        }
+        .card-text {
+            color: #FFFFFF; 
+        }
+        .btn-primary {
+            background-color: #FF5733; 
+            border-color: #FF5733; 
+        }
+        .btn-primary:hover {
+            background-color: #3498DB; 
+            border-color: #3498DB; 
+        }
+        footer {
+            background-color: #2C3E50;
+            color: #BDC3C7;
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <h2 class="text-center">Selamat Datang di Dashboard Pengguna</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile</h5>
+                        <p class="card-text">Lihat dan edit profil Anda.</p>
+                        <a href="profile.html" class="btn btn-primary">Lihat Profil</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Pengaturan</h5>
+                        <p class="card-text">Sesuaikan pengaturan akun Anda.</p>
+                        <a href="settings.html" class="btn btn-primary">Pengaturan</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Bantuan</h5>
+                        <p class="card-text">Butuh bantuan? Hubungi kami di sini.</p>
+                        <a href="help.html" class="btn btn-primary">Bantuan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Website Kami. All rights reserved.</p>
+    </footer>
+</body>
+</html>
